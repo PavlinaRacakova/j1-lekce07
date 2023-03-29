@@ -28,6 +28,14 @@ class SvatkyTest {
   @Test
   void jeVSeznamu() {
     //TODO Otestovat, že najde v seznamu existující jméno a nenajde neexistující jméno
+    //arrange (připrav)
+    Svatky svatky = new Svatky();
+    String ocekavanyVysledek = "Eva";
+
+    //act (vykonej)
+
+    //assert (ověř)
+    
   }
 
   /**
