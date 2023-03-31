@@ -70,7 +70,7 @@ class SvatkyTest {
      * Testuje metodu {@link Svatky#getPocetJmen()}
      */
     @Test
-    void getPocetJmen() {
+    void returnCorrectNumberOfNamesStoredInTheMap() {
         //Arrange
         Svatky svatky = new Svatky();
         int ocekavanyPocetJmen = 37;
@@ -95,73 +95,76 @@ class SvatkyTest {
         assertEquals(ocekavanyPocetPolozek, zjistenyPocetPolozek);
     }
 
-
-
     /**
-     * Testuje metodu {@link Svatky#pridatSvatek(String, MonthDay)}
+     * Testuje zda metoda {@link Svatky#pridatSvatek(String, MonthDay)} přidá svátek do seznamu
      */
     @Test
-    void pridatSvatekDenMesicIntMonthDay() {
+    void nameIsAddedtoTheMapUsingMonthDay() {
         //TODO Otestuje, že je jméno v seznamu svátků a že má přiřazen správný den
         //Arrange
         Svatky svatky = new Svatky();
         String testovaciJmeno = "Pavlína";
-        MonthDay testovaciDenNarozeni = MonthDay.of(2, 20);
+        MonthDay testovaciSvatek = MonthDay.of(2, 20);
         //Act
-        svatky.pridatSvatek(testovaciJmeno, testovaciDenNarozeni);
+        svatky.pridatSvatek(testovaciJmeno, testovaciSvatek);
         boolean vysledek = svatky.jeVSeznamu(testovaciJmeno);
         //Assert
         assertTrue(vysledek);
     }
 
+    /**
+     * Testuje zda metoda {@link Svatky#pridatSvatek(String, MonthDay)} uloží správné datum svátku do seznamu
+     */
     @Test
-    void pridatSvatekDVa() {
+    void newlyAddedNameHasCorrectNameDayUsingMonthDay() {
         //Arrange
         Svatky svatky = new Svatky();
         String testovaciJmeno = "Pavlína";
-        MonthDay testovaciDenNarozeni = MonthDay.of(2, 20);
+        MonthDay testovaciSvatek = MonthDay.of(2, 20);
         //Act
-        svatky.pridatSvatek(testovaciJmeno, testovaciDenNarozeni);
-        MonthDay vyslednyDenNarozeni = svatky.kdyMaSvatek(testovaciJmeno);
+        svatky.pridatSvatek(testovaciJmeno, testovaciSvatek);
+        MonthDay vyslednySvatek = svatky.kdyMaSvatek(testovaciJmeno);
         //Assert
-        assertEquals(testovaciDenNarozeni, vyslednyDenNarozeni);
+        assertEquals(testovaciSvatek, vyslednySvatek);
     }
 
     /**
-     * Testuje metodu {@link Svatky#pridatSvatek(String, int, int)}
+     * Testuje zda metoda {@link Svatky#pridatSvatek(String, int, int)} přidá svátek do seznamu
      */
    @Test
-    void rename() {
+    void nameIsAddedtoTheMapUsingIntInt() {
         //Arrange
         Svatky svatky = new Svatky();
         String testovaciJmeno = "Pavlína";
-        int testovaciMesicNarozeni = 10;
-        int testovaciDenNarozeni = 29;
+        int testovaciMesicSvatku = 10;
+        int testovaciDenSvatku = 29;
         //Act
-        svatky.pridatSvatek(testovaciJmeno, testovaciDenNarozeni, testovaciMesicNarozeni);
+        svatky.pridatSvatek(testovaciJmeno, testovaciDenSvatku, testovaciMesicSvatku);
         boolean vysledek = svatky.jeVSeznamu(testovaciJmeno);
         //Assert
         assertTrue(vysledek);
     }
 
+    /**
+     * Testuje zda metoda {@link Svatky#pridatSvatek(String, int, int)} uloží správné datum do seznamu
+     */
     @Test
-    void renameTwo() {
+    void newlyAddedNameHasCorrectNameDayUsingIntInt() {
         //Arrange
         Svatky svatky = new Svatky();
         String testovaciJmeno = "Pavlína";
-        int testovaciMesicNarozeni = 10;
-        int testovaciDenNarozeni = 29;
-        MonthDay ocekavanyDenNarozeni = MonthDay.of(testovaciMesicNarozeni, testovaciDenNarozeni);
+        int testovaciMesicSvatku = 10;
+        int testovaciDenSvatku = 29;
+        MonthDay ocekavanySvatek = MonthDay.of(testovaciMesicSvatku, testovaciDenSvatku);
         //Act
-        svatky.pridatSvatek(testovaciJmeno, testovaciDenNarozeni, testovaciMesicNarozeni);
-        MonthDay vyslednyDenNarozeni = svatky.kdyMaSvatek(testovaciJmeno);
+        svatky.pridatSvatek(testovaciJmeno, testovaciDenSvatku, testovaciMesicSvatku);
+        MonthDay vyslednySvatek = svatky.kdyMaSvatek(testovaciJmeno);
         //Assert
-        assertEquals(ocekavanyDenNarozeni, vyslednyDenNarozeni);
+        assertEquals(ocekavanySvatek, vyslednySvatek);
     }
 
-
     /**
-     * Testuje metodu {@link Svatky#pridatSvatek(String, int, Month)}
+     * Testuje zda metodu {@link Svatky#pridatSvatek(String, int, Month)} přidá svátek do seznamu
      */
     @Test
     void pridatSvatekDenMesicMonth() {
@@ -177,7 +180,6 @@ class SvatkyTest {
         //Assert
         assertTrue(vysledek);
     }
-
 
 
     @Test
