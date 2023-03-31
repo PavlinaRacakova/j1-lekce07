@@ -16,7 +16,6 @@ public class HlavniProgram {
     public static void main(String... args) {
         Svatky svatky = new Svatky();
 
-
         System.out.printf("V seznamu je %d jmen.", svatky.getPocetJmen()).println();
         System.out.printf("Monika má svátek %s.", svatky.kdyMaSvatek("Monika")).println();
         System.out.printf("Eva je v seznamu svátků: %b.", svatky.jeVSeznamu("Eva")).println();
