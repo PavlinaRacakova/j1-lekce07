@@ -16,24 +16,27 @@ class SvatkyTest {
      * Testuje metodu {@link Svatky#kdyMaSvatek(String)} když se zadané jméno ve Svatky nachází
      */
     @Test
-    void returnCorrectMonthDayIfNameIsPresent() {
+    void returnsCorrectMonthDayIfNameIsPresentInTheMap() {
         //Arrange
         Svatky svatky = new Svatky();
+        String jmeno = "Nataša";
+        MonthDay ocekavanySvatek = MonthDay.of(5, 18);
         //Act
-        MonthDay vysledek = svatky.kdyMaSvatek("Nataša");
+        MonthDay zjistenySvatek = svatky.kdyMaSvatek(jmeno);
         //Assert
-        assertEquals(MonthDay.of(5, 18), vysledek);
+        assertEquals(ocekavanySvatek, zjistenySvatek);
     }
 
     /**
      * Testuje metodu {@link Svatky#kdyMaSvatek(String)} když se zadané jméno ve Svatky nenachází
      */
     @Test
-    void returnNullIfNameIsNotPresent() {
+    void returnsNullIfNameIsNotPresentInTheMap() {
         //Arrange
         Svatky svatky = new Svatky();
+        String jmeno = "Eva";
         //Act
-        MonthDay vysledek = svatky.kdyMaSvatek("Eva");
+        MonthDay vysledek = svatky.kdyMaSvatek(jmeno);
         //Assert
         assertNull(vysledek);
     }
@@ -70,7 +73,7 @@ class SvatkyTest {
      * Testuje metodu {@link Svatky#getPocetJmen()}
      */
     @Test
-    void returnCorrectNumberOfNamesStoredInTheMap() {
+    void returnsCorrectNumberOfNamesDefaultlyStoredInTheMap() {
         //Arrange
         Svatky svatky = new Svatky();
         int ocekavanyPocetJmen = 37;
@@ -84,8 +87,7 @@ class SvatkyTest {
      * Testuje metodu {@link Svatky#getSeznamJmen()}
      */
     @Test
-    void getSeznamJmen() {
-        //TODO Zkontrolovat, že seznam jmen má správný počet položek.
+    void returnsCorrectlySizedSetOfStoredNames() {
         //Arrange
         Svatky svatky = new Svatky();
         int ocekavanyPocetPolozek = 37;
@@ -96,11 +98,10 @@ class SvatkyTest {
     }
 
     /**
-     * Testuje zda metoda {@link Svatky#pridatSvatek(String, MonthDay)} přidá svátek do seznamu
+     * Testuje zda metoda {@link Svatky#pridatSvatek(String, MonthDay)} přidá svátek do mapy
      */
     @Test
-    void nameIsAddedtoTheMapUsingMonthDay() {
-        //TODO Otestuje, že je jméno v seznamu svátků a že má přiřazen správný den
+    void nameIsAddedToTheMapUsingMonthDay() {
         //Arrange
         Svatky svatky = new Svatky();
         String testovaciJmeno = "Pavlína";
@@ -113,7 +114,7 @@ class SvatkyTest {
     }
 
     /**
-     * Testuje zda metoda {@link Svatky#pridatSvatek(String, MonthDay)} uloží správné datum svátku do seznamu
+     * Testuje zda metoda {@link Svatky#pridatSvatek(String, MonthDay)} uloží správné datum svátku do mapy
      */
     @Test
     void newlyAddedNameHasCorrectNameDayUsingMonthDay() {
@@ -123,19 +124,19 @@ class SvatkyTest {
         MonthDay testovaciSvatek = MonthDay.of(2, 20);
         //Act
         svatky.pridatSvatek(testovaciJmeno, testovaciSvatek);
-        MonthDay vyslednySvatek = svatky.kdyMaSvatek(testovaciJmeno);
+        MonthDay zjistenySvatek = svatky.kdyMaSvatek(testovaciJmeno);
         //Assert
-        assertEquals(testovaciSvatek, vyslednySvatek);
+        assertEquals(testovaciSvatek, zjistenySvatek);
     }
 
     /**
-     * Testuje zda metoda {@link Svatky#pridatSvatek(String, int, int)} přidá svátek do seznamu
+     * Testuje zda metoda {@link Svatky#pridatSvatek(String, int, int)} přidá svátek do mapy
      */
-   @Test
-    void nameIsAddedtoTheMapUsingIntInt() {
+    @Test
+    void nameIsAddedToTheMapUsingIntInt() {
         //Arrange
         Svatky svatky = new Svatky();
-        String testovaciJmeno = "Pavlína";
+        String testovaciJmeno = "Evženie";
         int testovaciMesicSvatku = 10;
         int testovaciDenSvatku = 29;
         //Act
@@ -146,72 +147,71 @@ class SvatkyTest {
     }
 
     /**
-     * Testuje zda metoda {@link Svatky#pridatSvatek(String, int, int)} uloží správné datum do seznamu
+     * Testuje zda metoda {@link Svatky#pridatSvatek(String, int, int)} uloží správné datum do mapy
      */
     @Test
     void newlyAddedNameHasCorrectNameDayUsingIntInt() {
         //Arrange
         Svatky svatky = new Svatky();
-        String testovaciJmeno = "Pavlína";
+        String testovaciJmeno = "Evženie";
         int testovaciMesicSvatku = 10;
         int testovaciDenSvatku = 29;
         MonthDay ocekavanySvatek = MonthDay.of(testovaciMesicSvatku, testovaciDenSvatku);
         //Act
         svatky.pridatSvatek(testovaciJmeno, testovaciDenSvatku, testovaciMesicSvatku);
-        MonthDay vyslednySvatek = svatky.kdyMaSvatek(testovaciJmeno);
+        MonthDay zjistenySvatek = svatky.kdyMaSvatek(testovaciJmeno);
         //Assert
-        assertEquals(ocekavanySvatek, vyslednySvatek);
+        assertEquals(ocekavanySvatek, zjistenySvatek);
     }
 
     /**
-     * Testuje zda metodu {@link Svatky#pridatSvatek(String, int, Month)} přidá svátek do seznamu
+     * Testuje zda metoda {@link Svatky#pridatSvatek(String, int, Month)} přidá svátek do mapy
      */
     @Test
-    void pridatSvatekDenMesicMonth() {
-        //TODO Otestuje, že je jméno v seznamu svátků a že má přiřazen správný den
+    void nameIsAddedToTheMapUsingIntMonth() {
         //Arrange
         Svatky svatky = new Svatky();
-        String testovaciJmeno = "Pavlína";
-        Month testovaciMesicNarozeni = Month.DECEMBER;
-        int testovaciDenNarozeni = 13;
+        String testovaciJmeno = "Rastislava";
+        Month testovaciMesicSvatku = Month.DECEMBER;
+        int testovaciDenSvatku = 13;
         //Act
-        svatky.pridatSvatek(testovaciJmeno, testovaciDenNarozeni, testovaciMesicNarozeni);
+        svatky.pridatSvatek(testovaciJmeno, testovaciDenSvatku, testovaciMesicSvatku);
         boolean vysledek = svatky.jeVSeznamu(testovaciJmeno);
         //Assert
         assertTrue(vysledek);
     }
 
-
+    /**
+     * Testuje zda metoda {@link Svatky#pridatSvatek(String, int, Month)} uloží správné datum do mapy
+     */
     @Test
-    void renameAgain() {
+    void newlyAddedNameHasCorrectNameDayUsingIntMonth() {
         //Arrange
         Svatky svatky = new Svatky();
-        String testovaciJmeno = "Pavlína";
-        Month testovaciMesicNarozeni = Month.DECEMBER;
-        int testovaciDenNarozeni = 13;
-        MonthDay ocekavanyDenNarozeni = MonthDay.of(testovaciMesicNarozeni, testovaciDenNarozeni);
+        String testovaciJmeno = "Rastislava";
+        Month testovaciMesicSvatku = Month.DECEMBER;
+        int testovaciDenSvatku = 13;
+        MonthDay ocekavanySvatek = MonthDay.of(testovaciMesicSvatku, testovaciDenSvatku);
         //Act
-        svatky.pridatSvatek(testovaciJmeno, testovaciDenNarozeni, testovaciMesicNarozeni);
-        MonthDay vyslednyDenNarozeni = svatky.kdyMaSvatek(testovaciJmeno);
+        svatky.pridatSvatek(testovaciJmeno, testovaciDenSvatku, testovaciMesicSvatku);
+        MonthDay zjistenySvatek = svatky.kdyMaSvatek(testovaciJmeno);
         //Assert
-        assertEquals(ocekavanyDenNarozeni, vyslednyDenNarozeni);
+        assertEquals(ocekavanySvatek, zjistenySvatek);
     }
-
 
     /**
      * Testuje metodu {@link Svatky#smazatSvatek(String)}
      */
     @Test
-    void smazatSvatek() {
-        //TODO Zkontrolovat, že po smazání bude počet svátků odpovídat novému počtu.
+    void numberOfStoredNamesIsReducedIfNameIsDeleted() {
         //Arrange
         Svatky svatky = new Svatky();
         String vymazavaneJmeno = "Emil";
-        int ocekevanyPocetZaznamu = 36;
+        int ocekevanyPocetJmen = 36;
         //Act
         svatky.smazatSvatek(vymazavaneJmeno);
-        int skutecnyPocetZaznamu = svatky.getPocetJmen();
+        int zjistenyPocetJmen = svatky.getPocetJmen();
         //Assert
-        assertEquals(ocekevanyPocetZaznamu, skutecnyPocetZaznamu);
+        assertEquals(ocekevanyPocetJmen, zjistenyPocetJmen);
     }
 }

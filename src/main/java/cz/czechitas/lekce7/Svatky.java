@@ -73,7 +73,7 @@ public class Svatky {
     /**
      * Vrací počet jmen uvedených v seznamu.
      *
-     * @return
+     * @return int
      */
     public int getPocetJmen() {
         return svatky.size();
@@ -121,7 +121,7 @@ public class Svatky {
     }
 
     /**
-     * Smaže jméo ze seznamu svátků.
+     * Smaže jméno ze seznamu svátků.
      *
      * @param jmeno Jméno ke smazání.
      */
